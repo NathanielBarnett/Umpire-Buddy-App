@@ -16,16 +16,30 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private int mStrikesCount, mBallsCount;
+    private static final String BALL_COUNT = "ball_count";
+    private static final String STRIKE_COUNT = "strike_count";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         Button mBallsButton;
         Button mStrikesButton;
 
         setContentView(R.layout.activity_main);
 
-       //setDialogs();
+        //Check if values are stored in Bundle
+        if (savedInstanceState != null) {
+            mStrikesCount = savedInstanceState.getInt(STRIKE_COUNT);
+            mBallsCount = savedInstanceState.getInt(BALL_COUNT);
+
+            //Update Textview with stored values
+            TextView Ballid = (TextView)findViewById(R.id.Ballid);
+            Ballid.setText(String.valueOf(mStrikesCount));
+            TextView Strikeid = (TextView)findViewById(R.id.Strikeid);
+            Strikeid.setText(String.valueOf(mBallsCount));
+        }
         mBallsButton = (Button) findViewById(R.id.Balls);
         mBallsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
         Ballid.setText(String.valueOf(mStrikesCount));
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt(BALL_COUNT, mBallsCount);
+        savedInstanceState.putInt(STRIKE_COUNT, mStrikesCount);
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
