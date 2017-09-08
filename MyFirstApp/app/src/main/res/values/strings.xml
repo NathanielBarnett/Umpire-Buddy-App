@@ -1,5 +1,5 @@
 <resources>
-    <string name="umpire_buddy">Umpire Buddy</string>
+    <string name="app_name">My First App</string>
     <string name="action_settings">Settings</string>
     <string name="Title">Umpire Buddy</string>
     <string name="Strikes">Strike!</string>
