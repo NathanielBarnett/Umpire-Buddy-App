@@ -34,10 +34,10 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="24dp"
-            android:text="@string/Title"
-            android:gravity="center_vertical"></TextView>
+            android:text="@string/Title"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

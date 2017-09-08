@@ -16,14 +16,26 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private int mStrikesCount, mBallsCount;
+    private static final String BALL_INDEX = "ball_index";
+    private static final String STRIKE_INDEX = "strike_index";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Button mBallsButton;
         Button mStrikesButton;
 
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState != null) {
+            mBallsCount = savedInstanceState.getInt(BALL_INDEX);
+            mStrikesCount = savedInstanceState.getInt(STRIKE_INDEX);
+            TextView Ballid = (TextView)findViewById(R.id.Ballid);
+            Ballid.setText(String.valueOf(mStrikesCount));
+            TextView Strikeid = (TextView)findViewById(R.id.Strikeid);
+            Strikeid.setText(String.valueOf(mBallsCount));
+        }
 
        //setDialogs();
         mBallsButton = (Button) findViewById(R.id.Balls);
@@ -129,4 +141,12 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt(BALL_INDEX, mBallsCount);
+        savedInstanceState.putInt(STRIKE_INDEX, mStrikesCount);
+    }
+
 }
