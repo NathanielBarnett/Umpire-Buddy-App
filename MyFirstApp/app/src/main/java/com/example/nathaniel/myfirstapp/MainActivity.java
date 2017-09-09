@@ -15,14 +15,16 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 
-    private int mStrikesCount, mBallsCount;
+    private int mStrikesCount, mBallsCount, mOutsCount;
     private static final String BALL_INDEX = "ball_index";
     private static final String STRIKE_INDEX = "strike_index";
+    private static final String OUT_INDEX = "out_index";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Button mResetButton;
         Button mAboutButton;
         Button mBallsButton;
         Button mStrikesButton;
@@ -44,11 +46,24 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             mBallsCount = savedInstanceState.getInt(BALL_INDEX);
             mStrikesCount = savedInstanceState.getInt(STRIKE_INDEX);
+            mOutsCount = savedInstanceState.getInt(OUT_INDEX);
             TextView Ballid = (TextView)findViewById(R.id.Ballid);
             Ballid.setText(String.valueOf(mStrikesCount));
             TextView Strikeid = (TextView)findViewById(R.id.Strikeid);
             Strikeid.setText(String.valueOf(mBallsCount));
+            TextView OutsId = (TextView) findViewById(R.id.Out_Count);
+            OutsId.setText(String.valueOf(mOutsCount));
         }
+
+      /*  mResetButton = (Button) findViewById(R.id.menu_reset_button);
+        mResetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StrikeCount(1);
+                BallCount(1);
+
+            }
+        }); */
 
        //setDialogs();
         mBallsButton = (Button) findViewById(R.id.Balls);
@@ -72,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     OutDialog().show();
                     StrikeCount(1);
                     BallCount(1);
+                    OutCount(0);
                 }
             }
         });
@@ -117,6 +133,17 @@ public class MainActivity extends AppCompatActivity {
         Strikeid.setText(String.valueOf(mBallsCount));
     }
 
+    public void OutCount(int val) {
+        if (val == 0) {
+            mOutsCount++;
+        }
+        else {
+            mOutsCount = 0;
+        }
+        TextView OutsId = (TextView) findViewById(R.id.Out_Count);
+        OutsId.setText(String.valueOf(mOutsCount));
+    }
+
     /*
     Parameters: int val
     Note: if val == 0, then count increments by 1, else count is reset to 0.
@@ -147,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt(BALL_INDEX, mBallsCount);
         savedInstanceState.putInt(STRIKE_INDEX, mStrikesCount);
+        savedInstanceState.putInt(OUT_INDEX, mOutsCount);
     }
 
 }
