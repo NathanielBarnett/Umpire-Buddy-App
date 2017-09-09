@@ -9,4 +9,5 @@
     <string name="Walk">Walk!</string>
     <string name="Out">Out!</string>
     <string name="OK">OK</string>
+    <string name="about_message">Umpire Buddy by Nathaniel Barnett</string>
 </resources>
